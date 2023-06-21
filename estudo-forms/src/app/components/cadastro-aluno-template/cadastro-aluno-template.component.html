@@ -1,0 +1,139 @@
+<form #form="ngForm" (ngSubmit)="onSubmit()" class="container my-5">
+    <div class="mb-3">
+        <label for="nome" class="form-label">nome completo</label>
+        <input type="text" class="form-control"
+         [ngClass]="{
+            'is-valid': nome.valid,
+            'is-invalid': nome.invalid && nome.touched}" 
+        id="nome" name="nome" [(ngModel)]="aluno.nome"
+        #nome="ngModel"
+        minlength="8"
+        required
+        >
+        <div *ngIf="nome.touched && nome.invalid" class="invalid-feedback">
+            nome é invalido!
+        </div>
+        <div *ngIf="nome.valid"class="valid-feedback">  
+        </div>
+    </div>
+    
+    <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" #email="ngModel"
+        [ngClass]="{
+            'is-valid': email.valid,
+            'is-invalid': email.invalid && email.touched}" 
+        id="email" name="email" [(ngModel)]="aluno.email" required>
+        <div *ngIf="email.touched && email.invalid" class="invalid-feedback">
+            email é invalido!
+        </div>
+        <div *ngIf="email.valid"class="valid-feedback">  
+        </div>
+     
+    </div>
+    
+    <div class="mb-3">
+        <label for="descricao" class="form-label">descrição do aluno</label>
+        <textarea class="form-control" #desc ="ngModel" id="descricao" rows="3"
+                name="descricao" [(ngModel)]="aluno.descricao"
+                [ngClass]="{
+                'is-valid': desc.valid,
+                'is-invalid': desc.invalid && desc.touched}"  
+                 minlength="30" maxlength="140" required>
+        </textarea>
+        <div *ngIf="desc.touched && desc.invalid" 
+             class="invalid-feedback">
+                <div *ngIf="desc.errors?.['required']">descrição obrigatória</div>
+                <div *ngIf="desc.errors?.['minlength']">tamanho minimo de 30 caracteres</div>
+        </div>
+            
+            <div *ngIf="desc.valid"class="valid-feedback">       
+             </div>
+    
+    </div>
+    
+    <div class="mb-3 form-check">
+          <label class="form-label" for="nivel">nivel de ensino</label>
+          <select id="nivel" class="form-select"  #nivel ="ngModel"
+          [ngClass]="{
+            'is-valid': nivel.valid,
+            'is-invalid': nivel.invalid && nivel.touched}"             
+          name="nivel" [(ngModel)]="aluno.nivel" required>
+                <option selected disabled value="">selecionar um nivel</option>
+                <option value="1">Ensino Fundamental I</option>
+                <option value="2">Ensino Fundamental II</option>
+                <option value="3">Ensino medio</option>
+          </select>
+          <div *ngIf="nivel.touched && nivel.invalid" class="invalid-feedback">
+           selecione uma opção valida!
+         </div>
+         <div *ngIf="nivel.valid"class="valid-feedback">  
+         </div>
+    </div>      
+
+    <div class="mb-3">
+        <div class="form-check">
+                <input 
+                class="form-check-input"
+                type="checkbox"
+                name="usuario-sistema"
+                id="usuario-sistema"
+                [(ngModel)]="aluno.usuarioAtivo">
+                <label class="form-check-label" for="usuario-sistema">
+                    usuario-sistema?
+                </label>         
+
+        </div>
+    </div>
+      
+    <div class="mb-3" *ngIf="aluno.usuarioAtivo">
+        <label for="senha" class="form-label">senha</label>
+        <input type="password" class="form-control" id="senha" #senha ="ngModel"
+           [ngClass]="{
+            'is-valid': senha.valid,
+            'is-invalid': senha.invalid && senha.touched}"
+         name="senha" [(ngModel)]="aluno.senha" required>
+         
+         <div *ngIf="senha.touched && senha.invalid" class="invalid-feedback">
+            selecione uma senha valida!
+          </div>
+          <div *ngIf="senha.valid"class="valid-feedback">  
+          </div>
+        
+    </div>
+    <div class="mb-3">
+        <label for="cidade" class="form-label">Cidade</label>
+        <input type="text" class="form-control" id="cidade" #cidade ="ngModel"
+        [ngClass]="{
+            'is-valid': cidade.valid,
+            'is-invalid': cidade.invalid && cidade.touched}"
+        name="cidade" [(ngModel)]="aluno.endereco.cidade" required
+        >
+        <div *ngIf="cidade.touched && cidade.invalid" class="invalid-feedback">
+            selecione uma cidade valida!
+          </div>
+          <div *ngIf="cidade.valid"class="valid-feedback">  
+          </div>
+    </div>
+        
+    <div class="mb-3">
+            <label for="estado" class="form-label">Estado</label>
+            <input type="text" class="form-control" id="estado" #estado ="ngModel"
+            [ngClass]="{
+                'is-valid': estado.valid,
+                'is-invalid': estado.invalid && estado.touched}"
+            name="estado" [(ngModel)]="aluno.endereco.estado" 
+            required minlength="2" maxlength="2"
+            >
+            <div *ngIf="estado.touched && estado.invalid" class="invalid-feedback">
+                selecione uma estado valida!
+              </div>
+              <div *ngIf="estado.valid"class="valid-feedback">  
+              </div>
+            
+    </div>
+    <button [disabled]="form.invalid" class="btn btn-success" type="submit">Submit</button>
+
+</form>
+   
+        

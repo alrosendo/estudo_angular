@@ -1,0 +1,107 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="container my-5">
+    <div class="mb-3">
+        <label for="nome" class="form-label">nome completo</label>
+        <input type="text" class="form-control" formControlName="nome"    
+        id="nome" name="nome"  [ngClass]="{
+            'is-valid': nome.valid,
+            'is-invalid': nome.touched && nome.invalid
+        }">
+        <div *ngIf="nome.touched && nome.invalid" class="invalid-feedback">
+            nome invalido!
+        </div>
+        <div *ngIf="nome.valid" class="valid-feedback"> </div>
+        
+    </div>
+    
+    <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" formControlName="email"
+        id="email" name="email"  [ngClass]="{
+            'is-valid': email.valid,
+            'is-invalid': email.touched && email.invalid
+        }">
+        <div *ngIf="email.touched && email.invalid" class="invalid-feedback">
+            email invalido!
+        </div>
+        <div *ngIf="email.valid" class="valid-feedback"> </div>
+      
+     
+    </div>
+    
+    <!--<div class="mb-3">
+        <label for="descricao" class="form-label">descrição do aluno</label>
+        <textarea class="form-control"  id="descricao" rows="3"
+               
+               >
+        </textarea>
+           
+    </div> --->
+    
+    <div class="mb-3 form-check">
+          <label class="form-label" for="nivel">nivel de ensino</label>
+          <select id="nivel" class="form-select" formControlName="nivel"                 
+          name="nivel" [ngClass]="{
+            'is-valid': nivel.valid,
+            'is-invalid': nivel.touched && nivel.invalid
+        }">
+                <option selected disabled value="">selecionar um nivel</option>
+                <option value="1">Ensino Fundamental I</option>
+                <option value="2">Ensino Fundamental II</option>
+                <option value="3">Ensino medio</option>
+          </select>
+          <div *ngIf="nivel.touched && nivel.invalid" class="invalid-feedback">
+            selecão invalida!
+        </div>
+        <div *ngIf="nivel.valid" class="valid-feedback"> </div>
+         
+    </div>      
+
+   <!-- <div class="mb-3">
+        <div class="form-check">
+                <input 
+                class="form-check-input"
+                type="checkbox"
+                name="usuario-sistema"
+                id="usuario-sistema"
+                >
+                <label class="form-check-label" for="usuario-sistema">
+                    usuario-sistema?
+                </label>  
+        </div>
+        </div>       
+         <div class="mb-3" >
+        <label for="senha" class="form-label">senha</label>
+        <input type="password" class="form-control" id="senha">        
+    </div> -->
+   
+    <div class="mb-3">
+        <label for="cidade" class="form-label">Cidade</label>
+        <input type="text" class="form-control" formControlName="cidade" 
+        id="cidade" [ngClass]="{
+            'is-valid': cidade.valid,
+            'is-invalid': cidade.touched && cidade.invalid
+        }">
+        <div *ngIf="cidade.touched && cidade.invalid" class="invalid-feedback">
+            cidade invalido!
+        </div>
+        <div *ngIf="cidade.valid" class="valid-feedback"> </div>
+       
+    </div>
+        
+    <div class="mb-3">
+            <label for="estado" class="form-label">Estado</label>
+            <input type="text" class="form-control" id="estado"
+             formControlName="estado"[ngClass]="{
+                'is-valid': estado.valid,
+                'is-invalid': estado.touched && estado.invalid
+            }"> 
+             <div *ngIf="estado.touched && estado.invalid" class="invalid-feedback">
+                estado invalido!
+            </div>
+            <div *ngIf="estado.valid" class="valid-feedback"> </div>           
+    </div>
+    <button [disabled]="form.invalid" class="btn btn-success" type="submit">Submit</button>
+
+</form>
+   
+        
